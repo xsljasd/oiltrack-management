@@ -1,4 +1,4 @@
-import { defineConfig, presetAttributify, presetMini, presetUno } from 'unocss'
+import { defineConfig, toEscapedSelector as e, presetAttributify, presetMini, presetUno } from 'unocss'
 import presetRemToPx from '@unocss/preset-rem-to-px'
 
 // 刚使用unocss的朋友，可以借助这个工具： https://to-unocss.netlify.app
@@ -16,6 +16,55 @@ export default defineConfig({
       baseFontSize: 4,
     }),
     presetMini(),
+  ],
+  theme: {
+    colors: {
+      shinyRed: 'var(--van-danger-color)',
+      layout: {
+        background: 'var(--van-background)',
+      },
+    },
+  },
+  rules: [
+    [/^shiny-text(-[\w\(\-\)]+?)?(-[\w\(\)\-]+)?$/, (match, { rawSelector, theme }) => {
+      const selector = e(rawSelector)
+      if (!match[1]) {
+        return `${selector} {
+          border-style: none;
+          background-color: ${theme.colors.layout.background};
+          -webkit-background-clip: text;
+          background-clip: text;
+          font-size: 5vw;
+          --un-text-opacity: 1;
+          color: rgb(0 0 0 / var(--un-text-opacity));
+          filter: drop-shadow(0 0 0.75rem var(--van-blue))
+        }`
+      }
+      else if (!match[2]) {
+        return `${selector} {
+          border-style: none;
+          background-color: ${theme.colors.layout.background};
+          -webkit-background-clip: text;
+          background-clip: text;
+          font-size: 5vw;
+          --un-text-opacity: 1;
+          color: ${match[1].slice(1)};
+          filter: drop-shadow(0 0 0.75rem var(--van-blue))
+        }`
+      }
+      else {
+        return `${selector} {
+          border-style: none;
+          background-color: ${theme.colors.layout.background};
+          -webkit-background-clip: text;
+          background-clip: text;
+          font-size: 5vw;
+          --un-text-opacity: 1;
+          color: ${match[1].slice(1)};
+          filter: drop-shadow(0 0 0.75rem ${match[2].slice(1)})
+        }`
+      }
+    }],
   ],
   shortcuts: [
     // shortcuts to multiple utilities
