@@ -50,6 +50,7 @@
     "commitizen": "^4.3.0",
     "consola": "^3.2.3",
     "cross-env": "^7.0.3",
+    "cypress": "^13.6.6",
     "cz-emoji-chinese": "^0.3.1",
     "eslint": "npm:eslint-ts-patch@^8.57.0-0",
     "eslint-ts-patch": "^8.57.0-0",
