@@ -21,7 +21,8 @@ export default defineConfig({
     colors: {
       shinyRed: 'var(--van-danger-color)',
       layout: {
-        background: 'var(--van-background)',
+        background: 'var(--default-background-color)',
+        navcolor: '#fff',
       },
     },
   },
@@ -65,6 +66,9 @@ export default defineConfig({
         }`
       }
     }],
+    [/^drop-shadow-([\w\(\-\)]+)$/, match => ({
+      filter: `drop-shadow(0 0 0.75rem ${match[1]});`,
+    })],
   ],
   shortcuts: [
     // shortcuts to multiple utilities

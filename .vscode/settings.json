@@ -49,5 +49,9 @@
   "common-intellisense.showSlots": false,
   "common-intellisense.ui": [
     "vant4"
+  ],
+  "cSpell.words": [
+    "oiltrack",
+    "vant"
   ]
 }
