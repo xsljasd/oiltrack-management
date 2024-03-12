@@ -2,19 +2,31 @@ import { defineConfig, toEscapedSelector as e, presetAttributify, presetMini, pr
 import presetRemToPx from '@unocss/preset-rem-to-px'
 
 // 刚使用unocss的朋友，可以借助这个工具： https://to-unocss.netlify.app
+interface deepNestRecord {
+  [Key: string]: string | deepNestRecord
+}
+interface Theme {
+  [Key: string]: string | deepNestRecord
+  colors: {
+    layout: deepNestRecord
+    [Key: string]: string | deepNestRecord
+  }
+}
 
-export default defineConfig({
+export default defineConfig<Theme>({
   presets: [
     presetUno,
     presetAttributify,
     // 为什么要用到这个插件？
     // 模板使用 viewport 作为移动端适配方案，unocss 默认单位为 rem
     // 所以需要转成 px，然后由 postcss 把 px 转成 vw/vh，完成适配
+    // @ts-expect-error extend preset has error type define
     presetRemToPx({
       // 这里为什么要设置基础字体大小？看下面这篇文章
       // https://juejin.cn/post/7262975395620618298
       baseFontSize: 4,
     }),
+    // @ts-expect-error extend preset has error type define
     presetMini(),
   ],
   theme: {
