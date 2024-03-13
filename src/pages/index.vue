@@ -2,13 +2,13 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-12 16:40:49
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-03-12 16:54:21
+ * @LastEditTime: 2024-03-13 00:20:01
  * @FilePath: /oiltrack-management/src/pages/index.vue
  * @Description: the home page
  * Copyright (c) 2024 by mxj, All Rights Reserved.
 -->
 <script setup lang="ts">
-import { Loading } from 'vant'
+import { Button, Loading } from 'vant'
 
 // import useAppStore from '@/stores/modules/app'
 
@@ -62,9 +62,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="home-container" h-100vh bg-layout-background bg-contain bg-no-repeat p-15vw>
+  <div class="home-container" h-100vh bg-layout-background bg-contain bg-no-repeat p-15vw>
     <section drop-shadow="[0.4rem 0 1.2rem rgba(204,204,204,0.30)]" mb-5vw mt-32vw h-29.34vw flex rd-2rem bg-layout-navcolor>
       ICON
+      <Button to="log_on">
+        logon
+      </Button>
     </section>
     <section drop-shadow="[0.4rem 0 1.2rem rgba(204,204,204,0.30)]" rd-2rem title="new warning notices">
       <div v-if="!ListData.loading">
@@ -74,7 +77,7 @@ onMounted(() => {
         <Loading />
       </div>
     </section>
-  </main>
+  </div>
 </template>
 
 <style scoped lang="less">
