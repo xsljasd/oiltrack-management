@@ -2,9 +2,9 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-03-13 16:18:58
+ * @LastEditTime: 2024-03-14 16:11:47
  * @FilePath: /oiltrack-management/src/layouts/default.vue
- * @Description:
+ * @Description: default layout
  * Copyright (c) 2024 by mxj, All Rights Reserved.
 -->
 <template>

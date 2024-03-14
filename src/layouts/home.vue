@@ -1,3 +1,12 @@
+<!--
+ * @Author: jiangjianhao1997@163.com
+ * @Date: 2024-03-12 16:40:49
+ * @LastEditors: adolf Jiang jiangjianhao1997@163.com
+ * @LastEditTime: 2024-03-14 16:12:29
+ * @FilePath: /oiltrack-management/src/layouts/home.vue
+ * @Description: home layout
+ * Copyright (c) 2024 by mxj, All Rights Reserved.
+-->
 <template>
   <main text="gray-700 dark:gray-200">
     <RouterView />
