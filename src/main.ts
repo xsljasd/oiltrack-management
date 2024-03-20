@@ -23,6 +23,18 @@ import 'vant/es/image-preview/style'
 const app = createApp(App)
 const head = createHead()
 
+// redirect to login page
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (sessionStorage.getItem('token'))
+      next()
+    else
+      next('/login')
+  }
+  else {
+    next()
+  }
+})
 app.use(head)
 app.use(router)
 app.use(pinia)

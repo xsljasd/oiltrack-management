@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-12 16:40:49
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-03-13 00:20:01
+ * @LastEditTime: 2024-03-21 00:52:26
  * @FilePath: /oiltrack-management/src/pages/index.vue
  * @Description: the home page
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -16,6 +16,7 @@ definePage({
   name: 'main',
   meta: {
     level: 1,
+    requireAuth: true,
   },
 })
 
