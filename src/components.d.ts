@@ -14,17 +14,13 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     ScrollStatusCard: typeof import('./components/scrollStatusCard/index.vue')['default']
     VanButton: typeof import('vant/es')['Button']
-    VanCard: typeof import('vant/es')['Card']
     VanCell: typeof import('vant/es')['Cell']
-    VanCellGroup: typeof import('vant/es')['CellGroup']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VanEmpty: typeof import('vant/es')['Empty']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
     VanIcon: typeof import('vant/es')['Icon']
-    VanList: typeof import('vant/es')['List']
     VanNavBar: typeof import('vant/es')['NavBar']
     VanSpace: typeof import('vant/es')['Space']
-    VanSwitch: typeof import('vant/es')['Switch']
   }
 }

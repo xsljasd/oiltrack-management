@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-23 01:50:28
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-03-28 00:31:10
+ * @LastEditTime: 2024-03-29 18:55:38
  * @FilePath: /oiltrack-management/src/components/scrollStatusCard/index.vue
  * @Description: slide icon card ~/img/alarm_center.png
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -56,7 +56,7 @@ function leave(el: HTMLElement, done: () => void) {
   <div ref="carouselContainerRef" class="carousel-container">
     <transition-group name="slide" tag="div" @before-enter="beforeEnter" @leave="leave">
       <div
-        v-for="(icon, index) in currentIcons"
+        v-for="(_icon, index) in currentIcons"
         :key="index"
         class="carousel-item"
       >
