@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-05 13:52:58
+ * @LastEditTime: 2024-04-06 11:12:05
  * @FilePath: /oiltrack-management/src/main.ts
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -32,7 +32,7 @@ import 'vant/es/image-preview/style'
 const app = createApp(App)
 const head = createHead()
 
-const APP_ID = 'wxfce69023d8a82031'
+const APP_ID = import.meta.env.VITE_WEIXIN_APP_ID
 const REDIRECT_URL = 'http%3A%2F%2Fdotou.do-tou.com'
 // redirect to login page
 router.beforeEach((to, _from, next) => {

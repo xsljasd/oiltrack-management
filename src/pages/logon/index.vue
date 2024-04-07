@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-21 01:03:00
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-05 13:52:13
+ * @LastEditTime: 2024-04-06 11:13:26
  * @FilePath: /oiltrack-management/src/pages/logon/index.vue
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -95,12 +95,14 @@ function submit() {
     state: LogonData.status,
     PhoneNum: LogonData.phoneNum,
   }).then((res) => {
-    if (res.data)
+    if (res.data) {
       sessionStorage.setItem('token', res.data)
-    else
+      router.push('/')
+    }
+    else {
       console.error(res)
+    }
   })
-  router.push('/')
   return null
 }
 </script>
@@ -118,6 +120,7 @@ function submit() {
       <button mr-5vw>
         cancel
       </button>
+      <a href="/logon" mr-5vw>没有账号？点击注册</a>
     </footer>
   </van-form>
 </template>

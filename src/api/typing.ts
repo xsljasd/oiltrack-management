@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-03-29 18:09:01
+ * @LastEditTime: 2024-04-06 12:03:01
  * @FilePath: /oiltrack-management/src/api/typing.ts
  * @Description: api types
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -26,6 +26,13 @@ export interface PageResult<T = any> {
 
 export interface PostRegisterBodyType {
   PhoneNum: string
+  UserCode: string
+  UserPwd: string
+  code: string
+  state: string
+}
+
+export interface PostLoginBodyType {
   UserCode: string
   UserPwd: string
   code: string
