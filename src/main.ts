@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-06 11:12:05
+ * @LastEditTime: 2024-04-07 13:45:47
  * @FilePath: /oiltrack-management/src/main.ts
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -33,7 +33,8 @@ const app = createApp(App)
 const head = createHead()
 
 const APP_ID = import.meta.env.VITE_WEIXIN_APP_ID
-const REDIRECT_URL = 'http%3A%2F%2Fdotou.do-tou.com'
+// eslint-disable-next-line node/prefer-global/process
+const REDIRECT_URL = process.env.NODE_ENV === 'development' ? 'http%3A%2F%2F192.168.3.10%3A3000' : 'http%3A%2F%2Fdotou.do-tou.com'
 // redirect to login page
 router.beforeEach((to, _from, next) => {
   if (to.meta.requireAuth) {

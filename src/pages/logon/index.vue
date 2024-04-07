@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-21 01:03:00
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-06 11:13:26
+ * @LastEditTime: 2024-04-07 14:10:43
  * @FilePath: /oiltrack-management/src/pages/logon/index.vue
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -15,7 +15,6 @@ definePage({
   name: 'logon',
   meta: {
     level: 1,
-    title: 'logon',
     requireAuth: false,
   },
 })
@@ -34,6 +33,8 @@ onMounted(() => {
   const urlQuery = route.query
   LogonData.code = urlQuery?.code?.toString() ?? ''
   LogonData.status = urlQuery?.status?.toString() ?? ''
+  if (!LogonData.code || !LogonData.status)
+    router.push('/placeholder')
 })
 
 const regUsername = /^[a-zA-Z]{3,10}$/

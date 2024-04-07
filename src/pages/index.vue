@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-12 16:40:49
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-03-23 02:08:59
+ * @LastEditTime: 2024-04-07 16:14:11
  * @FilePath: /oiltrack-management/src/pages/index.vue
  * @Description: the home page
  * Copyright (c) 2024 by mxj, All Rights Reserved.
