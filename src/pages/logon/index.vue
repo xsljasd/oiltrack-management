@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-21 01:03:00
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-07 14:10:43
+ * @LastEditTime: 2024-04-08 13:13:18
  * @FilePath: /oiltrack-management/src/pages/logon/index.vue
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -33,8 +33,8 @@ onMounted(() => {
   const urlQuery = route.query
   LogonData.code = urlQuery?.code?.toString() ?? ''
   LogonData.status = urlQuery?.status?.toString() ?? ''
-  if (!LogonData.code || !LogonData.status)
-    router.push('/placeholder')
+  // if (!LogonData.code || !LogonData.status)
+  //   router.push('/placeholder')
 })
 
 const regUsername = /^[a-zA-Z]{3,10}$/
@@ -96,7 +96,8 @@ function submit() {
     state: LogonData.status,
     PhoneNum: LogonData.phoneNum,
   }).then((res) => {
-    if (res.data) {
+    // @ts-expect-error response type error
+    if (res.Status === 0) {
       sessionStorage.setItem('token', res.data)
       router.push('/')
     }
@@ -114,14 +115,18 @@ function submit() {
     <van-field v-model="LogonData.userPwd" type="password" label="密码" placeholder="密码长度为8到12位" :rules="PASSWORD_RULE" />
     <van-field v-model="LogonData.confirmPwd" type="password" label="确认密码" placeholder="密码长度为8到12位" :rules="CONFIRM_PASSWORD_RULE" />
     <van-field v-model="LogonData.phoneNum" label="电话号码" placeholder="请输入您的电话号码" :rules="Phone_RULE" />
-    <footer mt-12vw flex flex-row-reverse>
+    <footer mt-12vw flex flex-row-reverse items-center>
       <van-button type="primary" round block native-type="submit">
         logon
       </van-button>
-      <button mr-5vw>
-        cancel
-      </button>
-      <a href="/logon" mr-5vw>没有账号？点击注册</a>
+      <a href="/login" class="goto-login" mr-5vw>已有账号？点击登陆</a>
     </footer>
   </van-form>
 </template>
+
+<style scoped lang="less">
+a.goto-login {
+  font: 10px sans-serif;
+  white-space: nowrap;
+}
+</style>

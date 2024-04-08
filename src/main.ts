@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-07 16:48:37
+ * @LastEditTime: 2024-04-08 17:09:01
  * @FilePath: /oiltrack-management/src/main.ts
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -55,7 +55,10 @@ function weChat_verify() {
         window.location.href = (`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${APP_ID}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect`)
     }
     else {
-      next()
+      if (to.path.includes('logon') && !Object.keys(to.query).includes('code'))
+        next('/placeholder')
+      else
+        next()
     }
   })
 }
