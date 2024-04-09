@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-21 01:03:00
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-08 13:13:18
+ * @LastEditTime: 2024-04-09 22:42:43
  * @FilePath: /oiltrack-management/src/pages/logon/index.vue
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -98,7 +98,7 @@ function submit() {
   }).then((res) => {
     // @ts-expect-error response type error
     if (res.Status === 0) {
-      sessionStorage.setItem('token', res.data)
+      sessionStorage.setItem('token', res.toString())
       router.push('/')
     }
     else {
@@ -117,7 +117,7 @@ function submit() {
     <van-field v-model="LogonData.phoneNum" label="电话号码" placeholder="请输入您的电话号码" :rules="Phone_RULE" />
     <footer mt-12vw flex flex-row-reverse items-center>
       <van-button type="primary" round block native-type="submit">
-        logon
+        注册
       </van-button>
       <a href="/login" class="goto-login" mr-5vw>已有账号？点击登陆</a>
     </footer>

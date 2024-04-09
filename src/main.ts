@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-08 17:09:01
+ * @LastEditTime: 2024-04-09 22:38:25
  * @FilePath: /oiltrack-management/src/main.ts
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -39,26 +39,33 @@ app.use(router)
 app.use(pinia)
 
 app.mount('#app')
+
 function weChat_verify() {
   const APP_ID = import.meta.env.VITE_WEIXIN_APP_ID
+  const REDIRECT_URL = import.meta.env.MODE === 'development' ? 'http%3A%2F%2F192.168.3.10%3A3000%2Flogon' : 'http%3A%2F%2Fdotou.do-tou.com%2Flogon'
 
-  const REDIRECT_URL = import.meta.env.MODE === 'development' ? 'http%3A%2F%2F192.168.3.10%3A3000' : 'http%3A%2F%2Fdotou.do-tou.com'
   // redirect to login page
   router.beforeEach((to, _from, next) => {
+    const REDIRECT_URL_NOT_INCLUDES_CODE = to.path.includes('logon') && !Object.keys(to.query).includes('code')
+    const LOCAL_STORAGE_HAS_CODE = !!localStorage.getItem('author-code')
+    if (!REDIRECT_URL_NOT_INCLUDES_CODE) {
+      localStorage.setItem('author-code', to.query.code as string)
+      localStorage.setItem('author-status', to.query.status as string)
+      // TODO add setTimeout expire 5 mins author-code&&author-status
+    }
     if (to.meta.requireAuth) {
       if (sessionStorage.getItem('token'))
         next()
-      else if (Object.keys(to.query).includes('code'))
-        next('/logon')
-
       else
         window.location.href = (`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${APP_ID}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect`)
     }
     else {
-      if (to.path.includes('logon') && !Object.keys(to.query).includes('code'))
-        next('/placeholder')
-      else
+      if (!REDIRECT_URL_NOT_INCLUDES_CODE && !LOCAL_STORAGE_HAS_CODE)
         next()
+      else if (LOCAL_STORAGE_HAS_CODE)
+        next('/login')
+      else if (REDIRECT_URL_NOT_INCLUDES_CODE && !LOCAL_STORAGE_HAS_CODE)
+        next('/placeholder')
     }
   })
 }
