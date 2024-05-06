@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-12 16:40:49
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-07 16:14:11
+ * @LastEditTime: 2024-05-01 13:22:33
  * @FilePath: /oiltrack-management/src/pages/index.vue
  * @Description: the home page
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -16,6 +16,7 @@ definePage({
   name: 'main',
   meta: {
     level: 1,
+    title: 'home',
     requireAuth: true,
   },
 })
@@ -63,11 +64,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="home-container" h-100vh bg-layout-background bg-contain bg-no-repeat p-15vw>
-    <section drop-shadow="[0.4rem 0 1.2rem rgba(204,204,204,0.30)]" mb-5vw mt-32vw h-29.34vw flex rd-2rem bg-layout-navcolor>
-      <scroll-status-card />
+  <div class="home-container" bg-layout-background bg-contain bg-no-repeat p-15vw>
+    <section drop-shadow="[0.4rem 0 1.2rem rgba(204,204,204,0.30)]" mb-2vw mt-32vw h-29.34vw flex rd-2rem bg-layout-navcolor>
+      <scroll-snap />
     </section>
-    <section drop-shadow="[0.4rem 0 1.2rem rgba(204,204,204,0.30)]" rd-2rem title="new warning notices">
+    <section class="scroll-list" drop-shadow="[0.4rem 0 1.2rem rgba(204,204,204,0.30)]" rd-2rem title="new warning notices">
       <div v-if="!ListData.loading">
         <VanCell v-for="item in ListData.List" :key="item" :title="item" />
       </div>
@@ -81,6 +82,12 @@ onMounted(() => {
 <style scoped lang="less">
 .home-container {
   background-image: url('~/img/HomeBackground.png');
+  height: calc(100vh - 46px);
+}
+.scroll-list {
+  height: calc(100% - 42vw - 29.34vw);
+  margin-bottom: 5vw;
+  overflow-y: scroll;
 }
 </style>
 

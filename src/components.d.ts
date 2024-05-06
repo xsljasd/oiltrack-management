@@ -12,6 +12,7 @@ declare module 'vue' {
     NavBar: typeof import('./components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScrollSnap: typeof import('./components/scrollSnap/index.vue')['default']
     ScrollStatusCard: typeof import('./components/scrollStatusCard/index.vue')['default']
     VanButton: typeof import('vant/es')['Button']
     VanCell: typeof import('vant/es')['Cell']

@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-23 01:50:28
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-03-29 18:55:38
+ * @LastEditTime: 2024-05-01 12:17:45
  * @FilePath: /oiltrack-management/src/components/scrollStatusCard/index.vue
  * @Description: slide icon card ~/img/alarm_center.png
  * Copyright (c) 2024 by mxj, All Rights Reserved.

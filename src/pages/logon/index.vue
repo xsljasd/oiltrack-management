@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-21 01:03:00
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-04-09 22:42:43
+ * @LastEditTime: 2024-05-01 12:56:04
  * @FilePath: /oiltrack-management/src/pages/logon/index.vue
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -15,6 +15,7 @@ definePage({
   name: 'logon',
   meta: {
     level: 1,
+    title: 'logon',
     requireAuth: false,
   },
 })
