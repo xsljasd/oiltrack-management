@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-03-29 18:03:25
+ * @LastEditTime: 2024-05-08 12:44:51
  * @FilePath: /oiltrack-management/src/utils/request.ts
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -10,14 +10,13 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { showNotify } from 'vant'
-import { localStorage } from '@/utils/local-storage'
 import { STORAGE_TOKEN_KEY } from '@/stores/mutation-type'
 
 // 这里是用于设定请求后端时，所用的 Token KEY
 // 可以根据自己的需要修改，常见的如 Access-Token，Authorization
 // 需要注意的是，请尽量保证使用中横线`-` 来作为分隔符，
 // 避免被 nginx 等负载均衡器丢弃了自定义的请求头
-export const REQUEST_TOKEN_KEY = 'Access-Token'
+export const REQUEST_TOKEN_KEY = 'token'
 
 // 创建 axios 实例
 const request = axios.create({
@@ -25,7 +24,6 @@ const request = axios.create({
   baseURL: import.meta.env.VITE_APP_API_BASE_URL,
   timeout: 6000, // 请求超时时间
 })
-
 export type RequestError = AxiosError<{
   message?: string
   result?: any
@@ -58,7 +56,7 @@ function errorHandler(error: RequestError): Promise<any> {
 
 // 请求拦截器
 function requestHandler(config: InternalAxiosRequestConfig): InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig> {
-  const savedToken = localStorage.get(STORAGE_TOKEN_KEY)
+  const savedToken = sessionStorage.getItem(STORAGE_TOKEN_KEY)
   // 如果 token 存在
   // 让每个请求携带自定义 token, 请根据实际情况修改
   if (savedToken)
