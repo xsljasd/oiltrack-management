@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-21 01:03:00
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-05-01 12:56:04
+ * @LastEditTime: 2024-05-06 23:40:54
  * @FilePath: /oiltrack-management/src/pages/logon/index.vue
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -43,18 +43,18 @@ const USERNAME_RULE = [
 
   {
     require: true,
-    message: '请输入正确内容',
+    message: '内容不能为空！',
   },
   {
     pattern: regUsername,
     message: '请输入正确内容',
   },
 ]
-const regPassword = /^[\w\d]{8,12}$/
+const regPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,12}$/
 const PASSWORD_RULE = [
   {
     require: true,
-    message: '请输入正确内容',
+    message: '内容不能为空！',
   },
   {
     pattern: regPassword,
@@ -69,7 +69,7 @@ function validator(value, rule) {
 const CONFIRM_PASSWORD_RULE = [
   {
     require: true,
-    message: '请输入正确内容',
+    message: '内容不能为空！',
   },
   {
     validator,
@@ -80,7 +80,7 @@ const regPhone = /^1[3-9]\d{9}$/
 const Phone_RULE = [
   {
     require: true,
-    message: '请输入正确内容',
+    message: '内容不能为空！',
   },
   {
     pattern: regPhone,
