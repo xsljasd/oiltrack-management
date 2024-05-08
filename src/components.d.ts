@@ -8,17 +8,20 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Chart: typeof import('./components/chart/index.vue')['default']
+    ClickableIcon: typeof import('./components/clickableIcon/index.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScrollSnap: typeof import('./components/scrollSnap/index.vue')['default']
+    ScrollStatusCard: typeof import('./components/scrollStatusCard/index.vue')['default']
     VanButton: typeof import('vant/es')['Button']
     VanCell: typeof import('vant/es')['Cell']
-    VanCellGroup: typeof import('vant/es')['CellGroup']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VanEmpty: typeof import('vant/es')['Empty']
+    VanField: typeof import('vant/es')['Field']
+    VanForm: typeof import('vant/es')['Form']
     VanIcon: typeof import('vant/es')['Icon']
     VanNavBar: typeof import('vant/es')['NavBar']
     VanSpace: typeof import('vant/es')['Space']
-    VanSwitch: typeof import('vant/es')['Switch']
   }
 }

@@ -1,14 +1,27 @@
+<!--
+ * @Author: jiangjianhao1997@163.com
+ * @Date: 2024-03-12 16:40:49
+ * @LastEditors: adolf Jiang jiangjianhao1997@163.com
+ * @LastEditTime: 2024-05-01 13:22:33
+ * @FilePath: /oiltrack-management/src/pages/index.vue
+ * @Description: the home page
+ * Copyright (c) 2024 by mxj, All Rights Reserved.
+-->
 <script setup lang="ts">
-import useAppStore from '@/stores/modules/app'
+import { Loading } from 'vant'
+
+// import useAppStore from '@/stores/modules/app'
 
 definePage({
   name: 'main',
   meta: {
     level: 1,
+    title: 'home',
+    requireAuth: true,
   },
 })
 
-const appStore = useAppStore()
+// const appStore = useAppStore()
 const checked = ref<boolean>(isDark.value)
 
 watch(
@@ -19,33 +32,64 @@ watch(
   { immediate: true },
 )
 
-function toggle() {
-  toggleDark()
-  appStore.swithMode(isDark.value ? 'dark' : 'light')
-}
+// function toggle() {
+//   toggleDark()
+//   appStore.swithMode(isDark.value ? 'dark' : 'light')
+// }
 
-const menuItems = [
-  { title: '💿 Mock 指南', route: 'mock' },
-  { title: '📊 Echarts 演示', route: 'charts' },
-  { title: '🎨 Unocss 示例', route: 'unocss' },
-  { title: '🍍 持久化 Pinia 状态', route: 'counter' },
-  { title: '🙅 404页 演示', route: 'unknown' },
-]
+const ListData = reactive({
+  List: [],
+  loading: true,
+  finished: false,
+})
+
+function onLoad() {
+  // 异步更新数据
+  // setTimeout 仅做示例，真实场景中一般为 ajax 请求
+  setTimeout(() => {
+    for (let i = 0; i < 10; i++)
+      ListData.List.push(ListData.List.length + 1)
+
+    // 加载状态结束
+    ListData.loading = false
+
+    // 数据全部加载完成
+    if (ListData.List.length >= 40)
+      ListData.finished = true
+  }, 1000)
+}
+onMounted(() => {
+  onLoad()
+})
 </script>
 
 <template>
-  <VanCellGroup inset>
-    <VanCell center title="🌗 暗黑模式">
-      <template #right-icon>
-        <VanSwitch v-model="checked" size="20px" @click="toggle()" />
-      </template>
-    </VanCell>
-
-    <template v-for="item in menuItems" :key="item.route">
-      <VanCell :title="item.title" :to="item.route" is-link />
-    </template>
-  </VanCellGroup>
+  <div class="home-container" bg-layout-background bg-contain bg-no-repeat p-15vw>
+    <section drop-shadow="[0.4rem 0 1.2rem rgba(204,204,204,0.30)]" mb-2vw mt-32vw h-29.34vw flex rd-2rem bg-layout-navcolor>
+      <scroll-snap />
+    </section>
+    <section class="scroll-list" drop-shadow="[0.4rem 0 1.2rem rgba(204,204,204,0.30)]" rd-2rem title="new warning notices">
+      <div v-if="!ListData.loading">
+        <VanCell v-for="item in ListData.List" :key="item" :title="item" />
+      </div>
+      <div v-else>
+        <Loading />
+      </div>
+    </section>
+  </div>
 </template>
+
+<style scoped lang="less">
+.home-container {
+  background-image: url('~/img/HomeBackground.png');
+  height: calc(100vh - 46px);
+}
+.scroll-list {
+  height: calc(100% - 42vw - 29.34vw);
+  margin-bottom: 5vw;
+  overflow-y: scroll;
+}
+</style>
 
 <route lang="yaml">
   meta:

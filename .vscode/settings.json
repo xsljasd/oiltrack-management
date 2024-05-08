@@ -49,5 +49,14 @@
   "common-intellisense.showSlots": false,
   "common-intellisense.ui": [
     "vant4"
+  ],
+  "cSpell.words": [
+    "Fdotou",
+    "Flogon",
+    "oiltrack",
+    "unocss",
+    "vant",
+    "WEIXIN",
+    "wxfce"
   ]
 }

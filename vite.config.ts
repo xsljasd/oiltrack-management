@@ -1,3 +1,12 @@
+/*
+ * @Author: jiangjianhao1997@163.com
+ * @Date: 2024-03-08 14:20:17
+ * @LastEditors: adolf Jiang jiangjianhao1997@163.com
+ * @LastEditTime: 2024-04-07 16:28:18
+ * @FilePath: /oiltrack-management/vite.config.ts
+ * @Description:
+ * Copyright (c) 2024 by mxj, All Rights Reserved.
+ */
 import path from 'node:path'
 import process from 'node:process'
 import { loadEnv } from 'vite'
@@ -19,9 +28,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       port: 3000,
       proxy: {
         '/api': {
-          target: '',
+          target: 'http://dotou.do-tou.com/OAuth',
           ws: false,
           changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, ''),
         },
       },
     },
