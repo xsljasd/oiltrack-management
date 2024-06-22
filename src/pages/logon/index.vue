@@ -2,14 +2,16 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-21 01:03:00
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-05-06 23:40:54
+ * @LastEditTime: 2024-05-11 18:14:28
  * @FilePath: /oiltrack-management/src/pages/logon/index.vue
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
 -->
 <script setup lang="ts">
-import { postRegister } from '@/api'
+import { md5 } from 'js-md5'
 import router from '@/router'
+import { postRegister } from '@/api'
+import { handleApiSuccessNotExcept } from '@/utils/apiErrorHandler'
 
 definePage({
   name: 'logon',
@@ -38,9 +40,10 @@ onMounted(() => {
   //   router.push('/placeholder')
 })
 
+/**
+ cancel validator rule
 const regUsername = /^[a-zA-Z]{3,10}$/
 const USERNAME_RULE = [
-
   {
     require: true,
     message: '内容不能为空！',
@@ -61,6 +64,7 @@ const PASSWORD_RULE = [
     message: '请输入正确内容',
   },
 ]
+ */
 function validator(value, rule) {
   if (typeof rule === 'function')
     return rule(value)
@@ -92,7 +96,7 @@ const Phone_RULE = [
 function submit() {
   postRegister({
     UserCode: LogonData.userCode,
-    UserPwd: LogonData.userPwd,
+    UserPwd: md5(LogonData.userPwd),
     code: LogonData.code,
     state: LogonData.status,
     PhoneNum: LogonData.phoneNum,
@@ -102,7 +106,12 @@ function submit() {
       sessionStorage.setItem('token', res.toString())
       router.push('/')
     }
+    // @ts-expect-error response type error
+    else if (res.Status === 2) {
+      router.push('/login')
+    }
     else {
+      handleApiSuccessNotExcept(res)
       console.error(res)
     }
   })
@@ -112,9 +121,9 @@ function submit() {
 
 <template>
   <van-form mt-12vw flex flex-col items-end @submit="submit">
-    <van-field v-model="LogonData.userCode" label="用户名" placeholder="用户名长度为3到10位" :rules="USERNAME_RULE" validate-trigger="onSubmit" />
-    <van-field v-model="LogonData.userPwd" type="password" label="密码" placeholder="密码长度为8到12位" :rules="PASSWORD_RULE" />
-    <van-field v-model="LogonData.confirmPwd" type="password" label="确认密码" placeholder="密码长度为8到12位" :rules="CONFIRM_PASSWORD_RULE" />
+    <van-field v-model="LogonData.userCode" label="用户名" placeholder="用户名" />
+    <van-field v-model="LogonData.userPwd" type="password" label="密码" placeholder="密码" />
+    <van-field v-model="LogonData.confirmPwd" type="password" label="确认密码" placeholder="确认密码" :rules="CONFIRM_PASSWORD_RULE" />
     <van-field v-model="LogonData.phoneNum" label="电话号码" placeholder="请输入您的电话号码" :rules="Phone_RULE" />
     <footer mt-12vw flex flex-row-reverse items-center>
       <van-button type="primary" round block native-type="submit">

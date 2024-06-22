@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-05-08 12:44:51
+ * @LastEditTime: 2024-05-09 20:20:40
  * @FilePath: /oiltrack-management/src/utils/request.ts
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -10,6 +10,7 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { showNotify } from 'vant'
+import { handleApiError } from './apiErrorHandler'
 import { STORAGE_TOKEN_KEY } from '@/stores/mutation-type'
 
 // 这里是用于设定请求后端时，所用的 Token KEY
@@ -33,6 +34,7 @@ export type RequestError = AxiosError<{
 // 异常拦截处理器
 function errorHandler(error: RequestError): Promise<any> {
   if (error.response) {
+    handleApiError(error)
     const { data = {}, status, statusText } = error.response
     // 403 无权限
     if (status === 403) {

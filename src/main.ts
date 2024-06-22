@@ -2,7 +2,7 @@
  * @Author: jiangjianhao1997@163.com
  * @Date: 2024-03-08 14:20:17
  * @LastEditors: adolf Jiang jiangjianhao1997@163.com
- * @LastEditTime: 2024-05-01 12:08:23
+ * @LastEditTime: 2024-05-10 20:16:39
  * @FilePath: /oiltrack-management/src/main.ts
  * @Description:
  * Copyright (c) 2024 by mxj, All Rights Reserved.
@@ -46,22 +46,21 @@ function weChat_verify() {
 
   // redirect to login page
   router.beforeEach((to, _from, next) => {
+    const REDIRECT_URL_INCLUDES_CODE = to.path.includes('logon') && Object.keys(to.query).includes('code')
     const REDIRECT_URL_NOT_INCLUDES_CODE = to.path.includes('logon') && !Object.keys(to.query).includes('code')
-    const LOCAL_STORAGE_HAS_CODE = !!localStorage.getItem('author-code')
-    if (!REDIRECT_URL_NOT_INCLUDES_CODE) {
+    // const LOCAL_STORAGE_HAS_CODE = !!localStorage.getItem('author-code')
+    if (REDIRECT_URL_INCLUDES_CODE) {
       localStorage.setItem('author-code', to.query.code as string)
       localStorage.setItem('author-status', to.query.status as string)
       // TODO add setTimeout expire 5 mins author-code&&author-status
     }
     if (to.meta.requireAuth) {
-      console.error('%c [ LOCAL_STORAGE_HAS_CODE ]-64', 'font-size:13px; background:red; color:#bf2c9f;')
       if (sessionStorage.getItem('token'))
         next()
       else
         window.location.href = (`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${APP_ID}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect`)
     }
     else {
-      console.error('%c [ REDIRECT_URL_NOT_INCLUDES_CODE && !LOCAL_STORAGE_HAS_CODE ]-65', 'font-size:13px; background:pink; color:#bf2c9f;', REDIRECT_URL_NOT_INCLUDES_CODE, LOCAL_STORAGE_HAS_CODE)
       if (!REDIRECT_URL_NOT_INCLUDES_CODE) {
         console.error('%c [ LOCAL_STORAGE_HAS_CODE ]-64', 'font-size:13px; background:blue; color:#bf2c9f;', to, '\n', _from)
         next()
