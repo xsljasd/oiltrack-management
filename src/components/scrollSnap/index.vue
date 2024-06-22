@@ -28,8 +28,8 @@ onMounted(() => {
 })
 function updateSlide(index) {
   currentIndex.value = index
-  const offset = -(index / slide.value.length) * 100
-  slides.value[0].parentNode.style.transform = `translateX(${offset}%)`
+  const offset = -index * (containerWidth + 0)
+  slides.value.forEach(item => item.style.transform = `translateX(${offset}px)`)
   dots.value.forEach((dot, dotIndex) => {
     dot.classList.remove('active')
     if (dotIndex === index)
@@ -83,6 +83,7 @@ span.carousel {
   align-items: center;
   justify-content: space-around;
   gap: 2px;
+  transition: transform 1s ease;
 }
 .dots {
   position: absolute;
