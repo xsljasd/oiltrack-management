@@ -46,8 +46,11 @@ declare module 'vue-router/auto/routes' {
     'login': RouteRecordInfo<'login', '/login', Record<never, never>, Record<never, never>>,
     'logon': RouteRecordInfo<'logon', '/logon', Record<never, never>, Record<never, never>>,
     'mock': RouteRecordInfo<'mock', '/mock', Record<never, never>, Record<never, never>>,
+    'personalCenter': RouteRecordInfo<'personalCenter', '/personalCenter', Record<never, never>, Record<never, never>>,
     'placeholder': RouteRecordInfo<'placeholder', '/placeholder', Record<never, never>, Record<never, never>>,
     'unocss': RouteRecordInfo<'unocss', '/unocss', Record<never, never>, Record<never, never>>,
+    'vehicleAuthorization': RouteRecordInfo<'vehicleAuthorization', '/vehicleAuthorization', Record<never, never>, Record<never, never>>,
+    'vehicleMonitor': RouteRecordInfo<'vehicleMonitor', '/vehicleMonitor', Record<never, never>, Record<never, never>>,
   }
 }
 
