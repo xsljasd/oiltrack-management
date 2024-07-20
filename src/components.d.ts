@@ -10,6 +10,7 @@ declare module 'vue' {
     Chart: typeof import('./components/chart/index.vue')['default']
     ClickableIcon: typeof import('./components/clickableIcon/index.vue')['default']
     IconWithDescription: typeof import('./components/scrollSnap/IconWithDescription.vue')['default']
+    MapContainer: typeof import('./components/map/MapContainer.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

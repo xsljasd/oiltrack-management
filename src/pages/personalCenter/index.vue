@@ -1,43 +1,34 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import useCounterStore from '@/stores/modules/counter'
+import Aver from '@/assets/icon/person_avger.png'
 
 definePage({
   name: 'personalCenter',
   meta: {
     level: 2,
-    title: '🍍 持久化 personalCenter 状态',
+    title: '个人中心',
   },
 })
-
-const counterStore = useCounterStore()
-const { counter } = storeToRefs(counterStore)
-
-function add() {
-  counterStore.increment()
-}
 </script>
 
 <template>
-  <div>
-    <h1 class="text-6xl color-pink font-semibold">
-      Hello, Pinia!
-    </h1>
-    src/pages/counter
-    <p class="mt-4 text-gray-700 dark:text-white">
-      This is a simple example of persisting Pinia state.
-      To verify its effectiveness, you can refresh the interface and observe it.
-    </p>
-
-    <p class="mt-4">
-      number：<strong class="text-green-500"> {{ counter }} </strong>
-    </p>
-
-    <button class="btn" @click="add">
-      Add
-    </button>
+  <div flex flex-col items-center justify-center>
+    <VanIcon :name="Aver" size="80" mt-32 />
+    <span>name</span>
+    <VanCell title="修改密码" mt-32>
+      <VanIcon name="arrow" />
+    </VanCell>
+    <VanCell title="修改用户名" mb-50vh>
+      <VanIcon name="arrow" />
+    </VanCell>
+    <VanButton w-100vw border-rd-20>
+      退出登录
+    </VanButton>
   </div>
 </template>
+
+<style>
+
+</style>
 
 <route lang="yaml">
   meta:

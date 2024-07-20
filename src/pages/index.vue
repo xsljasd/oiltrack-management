@@ -45,11 +45,14 @@ function onLoad() {
   // 异步更新数据
   // setTimeout 仅做示例，真实场景中一般为 ajax 请求
   setTimeout(() => {
-    ListData.List = [
+    const ListArray = [
       { plateNumber: 'ABC123', alarmInfo: '油站外试图解封', alarmLevel: 'Level 1' },
       { plateNumber: 'XYZ456', alarmInfo: '异常停车', alarmLevel: 'Level 2' },
       { plateNumber: 'DEF789', alarmInfo: '未施封离开油站', alarmLevel: 'Level 3' },
     ]
+
+    while (ListData.List.length < 40)
+      ListData.List.push(...ListArray)
 
     // 加载状态结束
     ListData.loading = false
@@ -79,9 +82,9 @@ onMounted(() => {
         <VanCell v-for="item in ListData.List" :key="item">
           <template #title>
             <div class="list-item">
-              <span class="plate-number">{{ item.plateNumber }}</span>
-              <span class="alarm-level">{{ item.alarmLevel }}</span>
-              <span class="alarm-info">{{ item.alarmInfo }}</span>
+              <span class="plate-number block w-33% text-center">{{ item.plateNumber }}</span>
+              <span class="alarm-level block w-33% text-center">{{ item.alarmLevel }}</span>
+              <span class="alarm-info block w-33% text-center">{{ item.alarmInfo }}</span>
             </div>
           </template>
         </VanCell>
@@ -109,20 +112,6 @@ onMounted(() => {
     justify-content: space-between;
     padding: 4px 8px;
     font-size: 12px;
-    .plate-number {
-      flex: 0 1 auto;
-      margin-right: auto;
-    }
-
-    .alarm-info {
-      flex: 0 1 auto;
-      margin-left: auto;
-    }
-
-    .alarm-level {
-      text-align: center;
-      flex: 1 1 auto;
-    }
 }
 
 }

@@ -29,6 +29,8 @@ import 'vant/es/dialog/style'
 import 'vant/es/notify/style'
 import 'vant/es/image-preview/style'
 
+import Log from '@/utils/log'
+
 const app = createApp(App)
 const head = createHead()
 
@@ -39,6 +41,8 @@ app.use(router)
 app.use(pinia)
 
 app.mount('#app')
+
+window.log = Log
 
 function weChat_verify() {
   const APP_ID = import.meta.env.VITE_WEIXIN_APP_ID
