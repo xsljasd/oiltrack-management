@@ -14,13 +14,13 @@ import ReportQuery from '~/img/report_query.png'
 import TrackPlayback from '~/img/track_playback.png'
 import VehicleMonitor from '~/img/vehicle_monitor.png'
 
-const containerWidth = window.innerWidth * 2 / 3
-const IconWidth = ref(`${(containerWidth - 14) / 4}px`)
+const containerWidth = window.innerWidth - 32
+const IconWidth = ref(`${(containerWidth - 200) / 4}px`)
 
 // TODO:open bind move carousel-container to change currentIndex
 const currentIndex = ref(0)
-const slides = ref([])
-const dots = ref([])
+const slides = ref<NodeListOf<HTMLElement>>()
+const dots = ref<NodeListOf<HTMLElement>>()
 onMounted(() => {
   slides.value = document.querySelectorAll('.carousel')
   dots.value = document.querySelectorAll('.dot')
@@ -36,11 +36,12 @@ function updateSlide(index) {
       dot.classList.add('active')
   })
 }
+const scrollContainer = ref(null)
 </script>
 
 <template>
   <div class="scroll-snap" relative w-full flex flex-col>
-    <div class="carousel-container">
+    <div ref="scrollContainer" class="carousel-container">
       <span class="carousel">
         <Icon :name="AlarmCenter" :size="IconWidth" />
         <Icon :name="ReportQuery" :size="IconWidth" />
@@ -76,7 +77,7 @@ function updateSlide(index) {
   }
 }
 span.carousel {
-  width: calc(100vw - 32vw);
+  min-width: calc(100vw - 32px);
   padding: 4px;
   scroll-snap-align: center;
   display: flex;
