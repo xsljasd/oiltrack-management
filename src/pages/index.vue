@@ -77,14 +77,14 @@ onMounted(() => {
         v-model:loading="ListData.loading"
       >
         <div class="list-header" h-44 w-full flex items-center justify-around>
-          <span>报警车辆</span><span>报警级别</span><span>报警类型</span>
+          <span columns-items-3>报警车辆</span><span columns-items-3>报警级别</span><span columns-items-3>报警类型</span>
         </div>
         <VanCell v-for="item in ListData.List" :key="item">
           <template #title>
             <div class="list-item">
-              <span class="plate-number block w-33% text-center">{{ item.plateNumber }}</span>
-              <span class="alarm-level block w-33% text-center">{{ item.alarmLevel }}</span>
-              <span class="alarm-info block w-33% text-center">{{ item.alarmInfo }}</span>
+              <span class="plate-number columns-items-3">{{ item.plateNumber }}</span>
+              <span class="alarm-level columns-items-3">{{ item.alarmLevel }}</span>
+              <span class="alarm-info columns-items-3">{{ item.alarmInfo }}</span>
             </div>
           </template>
         </VanCell>

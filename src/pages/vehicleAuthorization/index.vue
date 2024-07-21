@@ -51,13 +51,13 @@ onMounted(() => {
       overflow-scroll
     >
       <div class="list-header" pos-sticky top-0 h-44 w-full flex items-center justify-around>
-        <span>车队</span><span>车牌号</span><span>是否授权</span>
+        <span class="columns-items-3">车队</span><span columns-items-3>车牌号</span><span columns-items-3>是否授权</span>
       </div>
       <VanCell v-for="item in ListData.List" :key="item">
         <div class="list-item" flex items-center justify-around>
-          <span class="alarm-level block w-33% text-center">{{ item.carTeam }}</span>
-          <span class="plate-number block w-33% text-center">{{ item.plateNumber }}</span>
-          <span class="alarm-info block w-33% text-center">{{ item.hasAuth }}</span>
+          <span class="alarm-level columns-items-3">{{ item.carTeam }}</span>
+          <span class="plate-number columns-items-3">{{ item.plateNumber }}</span>
+          <span class="alarm-info columns-items-3">{{ item.hasAuth }}</span>
         </div>
       </VanCell>
     </VanList>

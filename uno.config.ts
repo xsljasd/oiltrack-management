@@ -81,6 +81,18 @@ export default defineConfig<Theme>({
     [/^drop-shadow-([\w\(\-\)]+)$/, match => ({
       filter: `drop-shadow(0 0 0.75rem ${match[1]});`,
     })],
+    [/^columns-items-(\d+)$/, (match, { rawSelector }) => {
+      const selector = e(rawSelector)
+      const width = (100 / Number(match[1])).toFixed(2)
+      return `${selector} {
+        display: block;
+        width: ${width}%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+      }`
+    }],
   ],
   shortcuts: [
     // shortcuts to multiple utilities
