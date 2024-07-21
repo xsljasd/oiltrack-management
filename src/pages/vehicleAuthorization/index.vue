@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import Unlock from '~/icon/unLock.png'
+import Lock from '~/icon/Lock.png'
+
 definePage({
   name: 'vehicleAuthorization',
   meta: {
@@ -6,6 +9,7 @@ definePage({
     title: '车辆授权',
   },
 })
+
 const ListData = reactive({
   List: [],
   loading: true,
@@ -41,6 +45,17 @@ function onLoad() {
 onMounted(() => {
   onLoad()
 })
+
+const checked = ref()
+const router = useRouter()
+function handleLock() {
+  log.info(checked.value)
+  router.push('/lockCar')
+}
+function handleUnlock() {
+  log.info(checked.value)
+  router.push('/unlockCar')
+}
 </script>
 
 <template>
@@ -51,18 +66,37 @@ onMounted(() => {
       overflow-scroll
     >
       <div class="list-header" pos-sticky top-0 h-44 w-full flex items-center justify-around>
-        <span class="columns-items-3">车队</span><span columns-items-3>车牌号</span><span columns-items-3>是否授权</span>
+        <span class="columns-items-4">select</span>
+        <span class="columns-items-4">车队</span><span columns-items-4>车牌号</span><span columns-items-4>是否授权</span>
       </div>
-      <VanCell v-for="item in ListData.List" :key="item">
-        <div class="list-item" flex items-center justify-around>
-          <span class="alarm-level columns-items-3">{{ item.carTeam }}</span>
-          <span class="plate-number columns-items-3">{{ item.plateNumber }}</span>
-          <span class="alarm-info columns-items-3">{{ item.hasAuth }}</span>
-        </div>
-      </VanCell>
+
+      <VanRadioGroup v-model="checked" shape="dot">
+        <VanCell v-for="(item, index) in ListData.List" :key="item">
+          <div class="list-item" flex items-center justify-around>
+            <VanRadio :name="index" columns-items-6 />
+            <span class="alarm-level columns-items-4">{{ item.carTeam }}</span>
+            <span class="plate-number columns-items-4">{{ item.plateNumber }}</span>
+            <span class="alarm-info columns-items-4">{{ item.hasAuth }}</span>
+          </div>
+        </VanCell>
+      </VanRadioGroup>
     </VanList>
+    <div class="float-container" pos-fixed right-8 flex flex-col overflow-hidden border-rd-12>
+      <div class="bg-#FD5757 p-8" @click="handleLock">
+        <VanIcon :name="Lock" size="32" />
+      </div>
+      <div class="bg-#4DCF63 p-8" @click="handleUnlock">
+        <VanIcon :name="Unlock" size="32" />
+      </div>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.float-container {
+  bottom: calc(6vw + 5em)
+}
+</style>
 
 <route lang="yaml">
   meta:

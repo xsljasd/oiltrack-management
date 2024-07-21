@@ -97,5 +97,6 @@ export default defineConfig<Theme>({
   shortcuts: [
     // shortcuts to multiple utilities
     ['btn', 'px-6 py-3 rounded-3 border-none inline-block bg-green-400 text-white cursor-pointer !outline-none hover:bg-green-600 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
+    ['card', 'border-rd-30 bg-#FFFFFF shadow-[0px_6px_20px_0px_rgba(204,204,204,0.3)] w-100% mb-4vw p-2rem'],
   ],
 })
